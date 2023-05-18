@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Ascien</string>
+
+
+    <string name="title_activity_progress_bar">ProgressBar</string>
+    <string name="title_activity_lesson">LessonActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="registration">Регистрация</string>
+    <string name="mail">Эл.почта</string>
+    <string name="password">Пароль</string>
+    <string name="username">Имя пользователя</string>
+    <string name="enter">Вход</string>
+    <string name="enterwithgoogle">Вход через Google</string>
+    <string name="already_have_acc">Уже есть аккаунт? Вход</string>
+    <string name="term_od_use">Используя наши сервисы, вы соглашаетесь с положениями <b>Условия использования</b></string>
+    <string name="login">Вход</string>
+    <string name="forgotPass"><u>Забыли пароль?</u></string>
+    <string name="create_new_acc">Создать новую учетную запись</string>
+    <string-array name="teacher_student_array">
+        <item>Как студент</item>
+        <item>Как учитель</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="newPassword">Новый пароль</string>
+    <string name="recoveryPassword">Подтвердите пароль</string>
+    <string name="resetPassword">Сбросить пароль</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="courses_fragment">Courses Fragment</string>
+    <string name="favorite_courses_fragment">Favourite Courses Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="search">Поиск</string>
+    <string name="favourite_courses_fragment">Wishlist</string>
+    <string name="editAccount">Редактировать аккаунт</string>
+    <string name="changePass">Изменить пароль</string>
+    <string name="exit">Выйти</string>
+    <string name="share">Поделиться</string>
+</resources>

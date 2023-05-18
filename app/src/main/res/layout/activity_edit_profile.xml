@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activities.EditProfileActivity">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:SpinKit_Color="@color/textColorGrey"
+        android:visibility="gone"
+        android:elevation="200dp"
+        style="@style/SpinKitView.Circle"/>
+
+    <!--This textview and the recycler view is responsible for Edit Profile-->
+    <ScrollView
+        android:id="@+id/scrollViewForUserData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/toolbar"
+        android:scrollbarThumbVertical="@null">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/editBasicProfileTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Основная информация"
+                android:textColor="#202E3E"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/google_sans_medium"
+                android:layout_marginBottom="10dp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/displayImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#04724D"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/editBasicProfileTitle">
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+            <Button
+                android:id="@+id/chooseDisplayImage"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Выбрать изображение"
+                android:background="@drawable/rounded_navy_blue_button"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:layout_below="@id/displayImageView"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/icon_camera"
+                android:drawablePadding="5dp"
+                android:paddingHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/uploadDisplayImage"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Загрузить изображение"
+                android:background="@drawable/rounded_sky_blue_button"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:layout_below="@id/chooseDisplayImage"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/icon_upload"
+                android:drawablePadding="5dp"
+                android:paddingHorizontal="5dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Имя"
+                android:background="@drawable/rounded_edittext"
+                android:height="40dp"
+                android:paddingLeft="20dp"
+                android:textColorHint="@color/grey"
+                android:drawableLeft="@drawable/ic_usercircle"
+                android:drawablePadding="8dp"
+                android:textCursorDrawable="@null"
+                android:windowSoftInputMode="adjustPan"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/chooseDisplayImage">
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordEditText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                android:layout_below="@id/firstNameEditText"
+                android:layout_marginBottom="10dp">
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_fingerprint"
+                    android:hint="Новый пароль"
+                    android:background="@drawable/rounded_edittext"
+                    android:height="40dp"
+                    android:paddingLeft="20dp"
+                    android:textColorHint="@color/grey"
+                    android:drawablePadding="8dp"
+                    android:paddingEnd="10dp"
+                    android:textCursorDrawable="@null"
+                    android:inputType="textPassword"
+                    android:windowSoftInputMode="adjustPan"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/submitButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#04724D"
+                android:text="Обновить"
+                android:layout_marginTop="220dp"
+                android:textColor="@color/white"
+                android:layout_below="@+id/passwordEditText1"/>
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

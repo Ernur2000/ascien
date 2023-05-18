@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/accountView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                app:SpinKit_Color="@color/textColorGrey"
+                android:visibility="gone"
+                android:elevation="200dp"
+                style="@style/SpinKitView.Circle"/>
+            <!--This textview and the recycler view is responsible for top course section-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/displayImageViewCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/bluish_user"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="50dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardCornerRadius="50dp">
+                <ImageView
+                    android:id="@+id/displayImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/avatar">
+                </ImageView>
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/displayImageViewCardView"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/google_sans_bold"
+                android:textSize="16dp"
+                android:textColor="@color/textColorBlack"
+                />
+            <TextView
+                android:id="@+id/accountPageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Страница аккаунта"
+                style="@style/headerTitleLabel"
+                android:layout_below="@+id/userName"/>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/editProfileRelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="#EAEAEA"
+                app:cardCornerRadius="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_below="@id/accountPageTitle">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"
+                    android:drawableStart="@drawable/ic_edit_acc_new"
+                    android:drawableEnd="@drawable/ic_end"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/editAccount"
+                    android:textColor="#3C4858"
+                    android:textSize="16sp" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/changePasswordRelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="#EAEAEA"
+                app:cardCornerRadius="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_below="@+id/editProfileRelativeLayout1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"
+                    android:drawableStart="@drawable/ic_locksimple"
+                    android:drawableEnd="@drawable/ic_end"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/changePass"
+                    android:textColor="#3C4858"
+                    android:textSize="16sp" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/shareRelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="#EAEAEA"
+                app:cardCornerRadius="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_below="@+id/changePasswordRelativeLayout1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"
+                    android:drawableStart="@drawable/ic_uploadsimple"
+                    android:drawableEnd="@drawable/ic_end"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/share"
+                    android:textColor="#3C4858"
+                    android:textSize="16sp" />
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/logOutRelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="#EAEAEA"
+                app:cardCornerRadius="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_below="@+id/shareRelativeLayout1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"
+                    android:drawableStart="@drawable/ic_key_new"
+                    android:drawableEnd="@drawable/ic_end"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/exit"
+                    android:textColor="#3C4858"
+                    android:textSize="16sp" />
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <include layout="@layout/signin_placeholder" />
+</RelativeLayout>
