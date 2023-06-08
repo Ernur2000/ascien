@@ -39,12 +39,12 @@
                 android:layout_marginTop="50dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardCornerRadius="50dp">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/displayImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/avatar">
-                </ImageView>
+                </de.hdodenhof.circleimageview.CircleImageView>
             </androidx.cardview.widget.CardView>
 
 
@@ -59,12 +59,22 @@
                 android:textColor="@color/textColorBlack"
                 />
             <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userName"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/google_sans_bold"
+                android:textSize="16dp"
+                android:textColor="@color/textColorBlack"
+                />
+            <TextView
                 android:id="@+id/accountPageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Страница аккаунта"
                 style="@style/headerTitleLabel"
-                android:layout_below="@+id/userName"/>
+                android:layout_below="@+id/city"/>
 
 
             <com.google.android.material.card.MaterialCardView
@@ -91,30 +101,7 @@
                     android:textColor="#3C4858"
                     android:textSize="16sp" />
             </com.google.android.material.card.MaterialCardView>
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/changePasswordRelativeLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
-                app:cardBackgroundColor="#EAEAEA"
-                app:cardCornerRadius="16sp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_below="@+id/editProfileRelativeLayout1">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="16dp"
-                    android:drawableStart="@drawable/ic_locksimple"
-                    android:drawableEnd="@drawable/ic_end"
-                    android:drawablePadding="8dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/changePass"
-                    android:textColor="#3C4858"
-                    android:textSize="16sp" />
-            </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/shareRelativeLayout1"
                 android:layout_width="match_parent"
@@ -124,7 +111,7 @@
                 app:cardBackgroundColor="#EAEAEA"
                 app:cardCornerRadius="16sp"
                 android:layout_marginHorizontal="16dp"
-                android:layout_below="@+id/changePasswordRelativeLayout1">
+                android:layout_below="@+id/editProfileRelativeLayout1">
 
                 <TextView
                     android:layout_width="match_parent"

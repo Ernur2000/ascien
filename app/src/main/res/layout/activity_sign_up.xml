@@ -95,7 +95,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/background_false_enabled"
             android:fontFamily="@font/raleway"
-            android:onClick="register"
             android:text="@string/enter"
             android:textAllCaps="false"
             android:textColor="#000"

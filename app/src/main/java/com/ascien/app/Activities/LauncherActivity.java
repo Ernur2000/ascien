@@ -18,7 +18,7 @@ public class LauncherActivity extends AppCompatActivity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(LauncherActivity.this,MainActivity.class);
+                Intent mainIntent = new Intent(LauncherActivity.this,SignInActivity.class);
                 LauncherActivity.this.startActivity(mainIntent);
                 LauncherActivity.this.finish();
             }

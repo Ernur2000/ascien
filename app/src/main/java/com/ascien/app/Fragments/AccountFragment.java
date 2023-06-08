@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.ascien.app.Activities.ChangePasswordActivity;
 import com.ascien.app.Activities.EditProfileActivity;
 import com.ascien.app.Activities.MainActivity;
 import com.ascien.app.Activities.SignInActivity;
@@ -38,20 +37,32 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     Button signInButton;
     RelativeLayout signInPlaceholder, accountView;
-    ImageView displayImageView;
-    TextView userName;
-    MaterialCardView editProfileRelativeLayout, changePasswordRelativeLayout, logOutRelativeLayout, shareRelativeLayout;
+    TextView userName, cityText;
+    MaterialCardView editProfileRelativeLayout, logOutRelativeLayout, shareRelativeLayout;
     private ProgressBar progressBar;
     View view;
     private Context mContext;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     GoogleSignInClient mGoogleSignInClient;
+    private CircleImageView profileImageView;
+    FirebaseAuth auth;
+    private DatabaseReference databaseReference;
+    GoogleSignInAccount acct;
 
     @Nullable
     @Override
@@ -65,19 +76,21 @@ public class AccountFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
         getDataFromGoogle();
+        getUserInfo();
         return view;
     }
 
     public void getDataFromGoogle() {
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+        acct = GoogleSignIn.getLastSignedInAccount(getActivity());
         if (acct != null) {
             String personName = acct.getDisplayName();
+            Log.d("TAG123",personName + "");
             String personEmail = acct.getEmail();
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
 
             userName.setText(personName);
-            Glide.with(this).load(String.valueOf(personPhoto)).into(displayImageView);
+            Glide.with(this).load(String.valueOf(personPhoto)).into(profileImageView);
         }
     }
 
@@ -103,23 +116,37 @@ public class AccountFragment extends Fragment implements SwipeRefreshLayout.OnRe
     void init(View view) {
         signInPlaceholder = view.findViewById(R.id.signInPlaceHolder);
         accountView = view.findViewById(R.id.accountView);
-        displayImageView = view.findViewById(R.id.displayImageView);
+        profileImageView = view.findViewById(R.id.displayImageView);
         userName = view.findViewById(R.id.userName);
+        cityText = view.findViewById(R.id.city);
         editProfileRelativeLayout = view.findViewById(R.id.editProfileRelativeLayout1);
-        changePasswordRelativeLayout = view.findViewById(R.id.changePasswordRelativeLayout1);
+        //changePasswordRelativeLayout = view.findViewById(R.id.changePasswordRelativeLayout1);
         logOutRelativeLayout = view.findViewById(R.id.logOutRelativeLayout1);
         shareRelativeLayout = view.findViewById(R.id.shareRelativeLayout1);
+
+        auth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
 
         logOutRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clearAllTheSharedPreferencesValues();
-                switch (view.getId()) {
-                    case R.id.logOutRelativeLayout1:
-                        Objects.requireNonNull(getActivity()).finish();
-                        signOut();
-                        break;
+                if (acct == null){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getContext(),SignInActivity.class);
+                    startActivity(intent);
+                    ((Activity) Objects.requireNonNull(getContext())).finish();
                 }
+                else {
+                    signOut();
+                }
+
+//                clearAllTheSharedPreferencesValues();
+//                switch (view.getId()) {
+//                    case R.id.logOutRelativeLayout1:
+//                        Objects.requireNonNull(getActivity()).finish();
+
+//                        break;
+//                }
             }
         });
 
@@ -131,13 +158,7 @@ public class AccountFragment extends Fragment implements SwipeRefreshLayout.OnRe
             }
         });
 
-        changePasswordRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, ChangePasswordActivity.class);
-                startActivity(intent);
-            }
-        });
+
         shareRelativeLayout.setOnClickListener(v -> {
             shareThisCourseOnSocialMedia(view);
         });
@@ -155,15 +176,44 @@ public class AccountFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     }
 
+    private void getUserInfo() {
+        if (acct==null){
+            databaseReference.child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists() && snapshot.getChildrenCount() > 0){
+                        if (snapshot.hasChild("name")){
+                            String name = snapshot.child("name").getValue().toString();
+                            userName.setText(name);
+                        } if (snapshot.hasChild("city")){
+                            String city = snapshot.child("city").getValue().toString();
+                            cityText.setText(city);
+                        }
+
+                        if (snapshot.hasChild("image")){
+                            String image = Objects.requireNonNull(snapshot.child("image").getValue()).toString();
+                            Picasso.get().load(image).into(profileImageView);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+
     private void signOut() {
         mGoogleSignInClient.signOut()
-                .addOnCompleteListener((Activity) getContext(), new OnCompleteListener<Void>() {
+                .addOnCompleteListener((Activity) Objects.requireNonNull(getContext()), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getContext(), "Signed out successfully", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getContext(),SignInActivity.class);
-//                        startActivity(intent);
-//                        ((Activity) getContext()).finish();
+                        Intent intent = new Intent(getContext(),SignInActivity.class);
+                        startActivity(intent);
+                        ((Activity) Objects.requireNonNull(getContext())).finish();
                     }
                 });
     }

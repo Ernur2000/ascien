@@ -81,10 +81,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
 
     private void gotoVideo() {
         TopCourse.Instructor instructor = new TopCourse.Instructor();
-        mCourse = new TopCourse(1,1,"asdasd",2,"asdasd","asdas","asdas","Aasas","asdasd","https://ascien.s3.us-east-2.amazonaws.com/courses/videos/W0XeqnrJKvJmmlZarqmt967OL7uOBOc5RDXHuusg.mp4","asdas","Aasas",1,"asda","asd","ASdas","sdfsd","sdfsd0","sdfsdf",instructor);
+        mCourse = new TopCourse(1,1,"asdasd",2,"asdasd","asdas","asdas","Aasas","asdasd","https://media.istockphoto.com/id/1328175450/video/investor-checking-cryptocurrency-price-index-on-mobile-phone-screen-cryptocurrency-future.jpg?s=640x640&k=20&c=JE42FQ89Xrtx25T1NkRjRv5_dTNOTYABKiTO6RgqHlE=","asdas","Aasas",1,"asda","asd","ASdas","sdfsd","sdfsd0","sdfsdf",instructor);
         Intent intent = new Intent(mContext, FullScreenLessonPlayerActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("videoURl", "courses/videos/fYjO2fL6Z9IsOaqu4GD1bjhJHYOWArOMJudcQ6WT.mp4");
+        intent.putExtra("videoURl", "https://media.istockphoto.com/id/1328175450/video/investor-checking-cryptocurrency-price-index-on-mobile-phone-screen-cryptocurrency-future.jpg?s=640x640&k=20&c=JE42FQ89Xrtx25T1NkRjRv5_dTNOTYABKiTO6RgqHlE=");
         mContext.startActivity(intent);
     }
 

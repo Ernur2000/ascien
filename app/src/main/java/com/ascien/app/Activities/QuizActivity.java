@@ -58,7 +58,7 @@ public class QuizActivity extends AppCompatActivity {
         quizView.getSettings().setDatabasePath(getApplicationContext().getFilesDir().getAbsolutePath() + "/databases");
         quizView.getSettings().setPluginState(WebSettings.PluginState.ON);
         quizView.getSettings().setDomStorageEnabled(true);
-        quizView.loadUrl(Api.QUIZ_BASE_URL+lessonId);
+        quizView.loadUrl("https://kahoot.com/");
         quizView.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
                 progressBar.setVisibility(View.GONE);

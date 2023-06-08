@@ -38,13 +38,15 @@ public class WishlistAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<WishListCourse> mWishLists;
     private WishListCourse mwishListCourse;
+    private OnItemClickListener listener;
     RemoveItemFromWishList mRemoveItemFromWishList = null;
 
-    public WishlistAdapter(Context context, ArrayList<WishListCourse> wishList, RemoveItemFromWishList removeItemFromWishList, WishListCourse wishListCourse) {
+    public WishlistAdapter(Context context, ArrayList<WishListCourse> wishList, RemoveItemFromWishList removeItemFromWishList, WishListCourse wishListCourse,OnItemClickListener listener) {
         mContext = context;
         mWishLists = wishList;
         mRemoveItemFromWishList = removeItemFromWishList;
         mwishListCourse = wishListCourse;
+        this.listener = listener;
     }
 
     @Override
@@ -134,30 +136,35 @@ public class WishlistAdapter extends BaseAdapter {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        SharedPreferences preferences = mContext.getSharedPreferences(Helpers.SHARED_PREF, 0);
-                        String authToken = preferences.getString("userToken", null);
-                        Call<List<WishListCourse>> wishListCourseCall = ApiClient.getApi().getMyWishList("Bearer " + authToken);
-                        wishListCourseCall.enqueue(new Callback<List<WishListCourse>>() {
-                            @Override
-                            public void onResponse(Call<List<WishListCourse>> call, Response<List<WishListCourse>> response) {
-                                List<WishListCourse> wishListCourse = response.body();
-                                SharedPreferences preferences = mContext.getSharedPreferences(Helpers.SHARED_PREF, 0);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                for (WishListCourse w : wishListCourse) {
-                                    int Id = w.getId();
-                                    editor.putInt("id", Id);
-                                }
-                                int id = preferences.getInt("id", 0);
-                                Log.d("Tag", id + "");
-                                unLikedWishListItem(id);
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<List<WishListCourse>> call, Throwable t) {
-
-                            }
-                        });
+                        Log.d("TAG",courseId + "");
+                        mWishLists.remove(courseId);
+                        notifyDataSetChanged();
+                        listener.onClick(mWishLists);
+                        notifyDataSetChanged();
+//                        SharedPreferences preferences = mContext.getSharedPreferences(Helpers.SHARED_PREF, 0);
+//                        String authToken = preferences.getString("userToken", null);
+//                        Call<List<WishListCourse>> wishListCourseCall = ApiClient.getApi().getMyWishList("Bearer " + authToken);
+//                        wishListCourseCall.enqueue(new Callback<List<WishListCourse>>() {
+//                            @Override
+//                            public void onResponse(Call<List<WishListCourse>> call, Response<List<WishListCourse>> response) {
+//                                List<WishListCourse> wishListCourse = response.body();
+//                                SharedPreferences preferences = mContext.getSharedPreferences(Helpers.SHARED_PREF, 0);
+//                                SharedPreferences.Editor editor = preferences.edit();
+//                                for (WishListCourse w : wishListCourse) {
+//                                    int Id = w.getId();
+//                                    editor.putInt("id", Id);
+//                                }
+//                                int id = preferences.getInt("id", 0);
+//                                Log.d("Tag", id + "");
+//                                unLikedWishListItem(id);
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<List<WishListCourse>> call, Throwable t) {
+//
+//                            }
+//                        });
                     }
                 })
                 .setNegativeButton(android.R.string.no, null).show();
@@ -186,5 +193,9 @@ public class WishlistAdapter extends BaseAdapter {
 
     public interface RemoveItemFromWishList {
         void removeFromWishList(int courseId);
+    }
+    public interface OnItemClickListener {
+
+        void onClick(ArrayList<WishListCourse> course);
     }
 }

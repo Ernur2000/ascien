@@ -40,9 +40,16 @@ import com.ascien.app.Network.Api;
 import com.ascien.app.Network.ApiClient;
 import com.ascien.app.R;
 import com.ascien.app.Utils.Helpers;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,12 +99,20 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Course> mCourses = new ArrayList<>();
     private ArrayList<TopCourse> CourseNew = new ArrayList<>();
 
+    FirebaseAuth auth;
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (user == null  && acct==null){
+            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(intent);
+            finish();
+        }
         getSupportFragmentManager().beginTransaction().replace(R.id.homePageFrameLayout, new CourseFragment()).commit();
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetView);
@@ -166,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void init() {
         showSearchBoxButton = findViewById(R.id.showSearchBarButton);
         hideSearchBoxButton = findViewById(R.id.hideSearchBarButton);
@@ -193,6 +207,9 @@ public class MainActivity extends AppCompatActivity {
         });
         backButton.setVisibility(View.GONE);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
     }
 
     public void handleFilterButton(View view) {
@@ -492,15 +509,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(Helpers.SHARED_PREF, 0);
-        String token = sharedPreferences.getString("userToken", null);
-        if (token != null) {
-            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        SharedPreferences sharedPreferences = getSharedPreferences(Helpers.SHARED_PREF, 0);
+//        String token = sharedPreferences.getString("userToken", null);
+//        if (token != null) {
+//            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        if (account==null){
+//            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
 }

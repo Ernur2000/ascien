@@ -145,16 +145,16 @@ public class LessonActivity extends YouTubeBaseActivity implements SectionAdapte
         mSections = new ArrayList<>();
         List<LessonSchema> bbb = new ArrayList<>();
 
-        bbb.add(new LessonSchema(1, "Introduction", "10:00:12", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        bbb.add(new LessonSchema(1, "Getting started", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        bbb.add(new LessonSchema(1, "Реальность криптовалютного мира", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        bbb.add(new LessonSchema(1, "Криптовалюта, биткоин и альткоины", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        bbb.add(new LessonSchema(1, "Что такое криптовалюта", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        bbb.add(new LessonSchema(1, "Introduction", "10:00:12", 4, 4, "html5", "https://media.istockphoto.com/id/1297096392/video/bitcoin-cryptocurrency-futuristic-innovation-digital.mp4?s=mp4-640x640-is&k=20&c=0AvQ_c_CGkFTZtKrrV7jcwuEITEl1xKA8npJXpP_UK4=", "video", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        bbb.add(new LessonSchema(1, "Getting started", "05:00:30", 4, 4, "html5", "asdasdsa", "quiz", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        bbb.add(new LessonSchema(1, "Реальность криптовалютного мира", "05:00:30", 4, 4, "html5", "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", "video", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        bbb.add(new LessonSchema(1, "Криптовалюта, биткоин и альткоины", "05:00:30", 4, 4, "html5", "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", "quiz", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        bbb.add(new LessonSchema(1, "Что такое криптовалюта", "05:00:30", 4, 4, "html5", "asdasdsa", "quiz", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
 
         List<LessonSchema> сet = new ArrayList<>();
-        сet.add(new LessonSchema(1, "Strings and Integers", "10:00:12", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        сet.add(new LessonSchema(1, "ArrayList and HashMap", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
-        сet.add(new LessonSchema(1, "Dictionary", "05:00:30", 4, 4, "asdsad", "asdasdsa", "asdasda", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        сet.add(new LessonSchema(1, "Strings and Integers", "10:00:12", 4, 4, "html5", "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", "video", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        сet.add(new LessonSchema(1, "ArrayList and HashMap", "05:00:30", 4, 4, "html5", "asdasdsa", "quiz", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
+        сet.add(new LessonSchema(1, "Dictionary", "05:00:30", 4, 4, "html5", "asdasdsa", "quiz", "asdsad", "asdasdsa", "asdasda", "asdasdasd", false, 15));
         mSections.add(new Section(10, "Биткоин", bbb, 5, "01:00:04", 14, 15));
         mSections.add(new Section(10, "Programming", сet, 5, "01:00:04", 14, 15));
         initSectionRecyclerView();
@@ -197,6 +197,8 @@ public class LessonActivity extends YouTubeBaseActivity implements SectionAdapte
         if (eachLesson.getLessonType().equals("video")) {
             fullScreenLessonBtn.setVisibility(View.VISIBLE);
             if (eachLesson.getVideoType().equals("html5") && !eachLesson.getVideoUrl().equals("")) {
+                //playVimeoOnWebView(eachLesson.getVideoUrl());
+                //playYouTubeVideo(eachLesson.getVideoUrl());
                 playHTML5Video(eachLesson.getVideoUrl());
             } else {
                 fullScreenLessonBtn.setVisibility(View.GONE);

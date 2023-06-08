@@ -71,7 +71,7 @@
             android:textSize="16sp"
             android:layout_marginTop="20dp"
             android:text="@string/forgotPass"
-            android:onClick="openDialogFragment"/>
+            android:onClick="resetPassword"/>
         <Button
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
@@ -86,7 +86,6 @@
             android:background="@drawable/background_false_enabled"
             android:textColor="#000"
             android:layout_marginTop="20dp"
-            android:onClick="logIn"
             />
     </LinearLayout>
     <com.github.ybq.android.spinkit.SpinKitView

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "774272545500",
+    "firebase_url": "https://ascien-954e4-default-rtdb.firebaseio.com",
+    "project_id": "ascien-954e4",
+    "storage_bucket": "ascien-954e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774272545500:android:ceaaf288125701a31bfa19",
+        "android_client_info": {
+          "package_name": "com.ascien.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774272545500-2kt1kba6p5qchsd9u0ro8k7bp0lfeaoe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ascien.app",
+            "certificate_hash": "3a1025b9d329ec932974db8b3c773c9a88b4fe2c"
+          }
+        },
+        {
+          "client_id": "774272545500-p9t6jl6jq8m53mum3nmcna47r5qaotu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCztl4PK9rdZfgLghpCdjjwFqJWRARxTAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774272545500-p9t6jl6jq8m53mum3nmcna47r5qaotu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

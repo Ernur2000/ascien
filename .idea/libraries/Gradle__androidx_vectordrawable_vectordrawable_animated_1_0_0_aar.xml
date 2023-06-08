@@ -2,8 +2,8 @@
   <library name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.0.0@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/af8475069c57e82bcda45da86c0ae8d7/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e353a99b3173ed584b5b292fd79e6d6a/transformed/vectordrawable-animated-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e353a99b3173ed584b5b292fd79e6d6a/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91b807c8f6375678c6aecc4cf97aa592/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/91b807c8f6375678c6aecc4cf97aa592/transformed/vectordrawable-animated-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
